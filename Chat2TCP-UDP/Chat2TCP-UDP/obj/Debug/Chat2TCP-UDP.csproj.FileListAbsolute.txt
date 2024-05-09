@@ -1,0 +1,13 @@
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\bin\Debug\Chat2TCP-UDP.exe.config
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\bin\Debug\Chat2TCP-UDP.exe
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\bin\Debug\Chat2TCP-UDP.pdb
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\bin\Debug\MetroFramework.dll
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\bin\Debug\MetroFramework.Fonts.dll
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP-UDP.csproj.AssemblyReference.cache
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP_UDP.Chatserver.resources
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP_UDP.Properties.Resources.resources
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP-UDP.csproj.GenerateResource.cache
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP-UDP.csproj.CoreCompileInputs.cache
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP.FE1F4EF8.Up2Date
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP-UDP.exe
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP-UDP.pdb

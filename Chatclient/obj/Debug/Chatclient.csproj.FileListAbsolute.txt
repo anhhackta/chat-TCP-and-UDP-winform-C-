@@ -1,0 +1,13 @@
+E:\chat\Chatclient\bin\Debug\Chatclient.exe.config
+E:\chat\Chatclient\bin\Debug\Chatclient.exe
+E:\chat\Chatclient\bin\Debug\Chatclient.pdb
+E:\chat\Chatclient\bin\Debug\MetroFramework.dll
+E:\chat\Chatclient\bin\Debug\MetroFramework.Fonts.dll
+E:\chat\Chatclient\obj\Debug\Chatclient.csproj.AssemblyReference.cache
+E:\chat\Chatclient\obj\Debug\Chatclient.login.resources
+E:\chat\Chatclient\obj\Debug\Chatclient.Properties.Resources.resources
+E:\chat\Chatclient\obj\Debug\Chatclient.csproj.GenerateResource.cache
+E:\chat\Chatclient\obj\Debug\Chatclient.csproj.CoreCompileInputs.cache
+E:\chat\Chatclient\obj\Debug\Chatclient.csproj.Up2Date
+E:\chat\Chatclient\obj\Debug\Chatclient.exe
+E:\chat\Chatclient\obj\Debug\Chatclient.pdb
