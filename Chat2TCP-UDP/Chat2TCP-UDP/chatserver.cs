@@ -299,5 +299,29 @@ namespace Chat2TCP_UDP
             }
         }
 
+        private void tb_sendsv_Enter(object sender, EventArgs e)
+        {
+            if (tb_sendsv.Text == "Nhập Tin nhắn gửi đến các client") 
+            {
+                tb_sendsv.Text = "";
+                tb_sendsv.ForeColor = Color.Black;
+            }
+        }
+
+        private void tb_sendsv_Leave(object sender, EventArgs e)
+        {
+            if (tb_sendsv.Text == "")
+            {
+                tb_sendsv.Text = "Nhập Tin nhắn gửi đến các client";
+                tb_sendsv.ForeColor = Color.Gray;
+
+            }
+        }
+
+        private void Chatserver_Load(object sender, EventArgs e)
+        {
+            tb_sendsv.Text = "Nhập Tin nhắn gửi đến các client";
+            tb_sendsv.ForeColor = Color.Gray;
+        }
     }
 }
