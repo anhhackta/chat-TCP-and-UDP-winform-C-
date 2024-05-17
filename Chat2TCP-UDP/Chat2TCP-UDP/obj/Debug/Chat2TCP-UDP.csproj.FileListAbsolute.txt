@@ -11,3 +11,5 @@ E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP-UDP.csproj.CoreCompileInput
 E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP.FE1F4EF8.Up2Date
 E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP-UDP.exe
 E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP-UDP.pdb
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP_UDP.form.Form_Login.resources
+E:\chat\Chat2TCP-UDP\Chat2TCP-UDP\obj\Debug\Chat2TCP_UDP.form.Form_signup.resources

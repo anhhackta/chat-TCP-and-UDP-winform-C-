@@ -3,11 +3,31 @@
   "WorkspaceRootPath": "E:\\chat\\Chat2TCP-UDP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|e:\\chat\\chat2tcp-udp\\chat2tcp-udp\\chatserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|solutionrelative:chat2tcp-udp\\chatserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|e:\\chat\\chat2tcp-udp\\chat2tcp-udp\\mainlogin_register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|solutionrelative:chat2tcp-udp\\mainlogin_register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|e:\\chat\\chat2tcp-udp\\chat2tcp-udp\\chatserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|e:\\chat\\chat2tcp-udp\\chat2tcp-udp\\form\\form_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|solutionrelative:chat2tcp-udp\\form\\form_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|e:\\chat\\chat2tcp-udp\\chat2tcp-udp\\form\\form_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|solutionrelative:chat2tcp-udp\\form\\form_signup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|e:\\chat\\chat2tcp-udp\\chat2tcp-udp\\mainlogin_register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|solutionrelative:chat2tcp-udp\\mainlogin_register.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|e:\\chat\\chat2tcp-udp\\chat2tcp-udp\\form\\form_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|solutionrelative:chat2tcp-udp\\form\\form_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|e:\\chat\\chat2tcp-udp\\chat2tcp-udp\\connectdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|solutionrelative:chat2tcp-udp\\connectdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|E:\\chat\\Chat2TCP-UDP\\chat2tcp-udp\\chatserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2A0EA0DB-638E-4571-99E7-2D4646E80BEE}|Chat2TCP-UDP\\Chat2TCP-UDP.csproj|solutionrelative:chat2tcp-udp\\chatserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,28 +54,91 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "chatserver.cs",
-              "DocumentMoniker": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\chatserver.cs",
-              "RelativeDocumentMoniker": "Chat2TCP-UDP\\chatserver.cs",
-              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\chatserver.cs",
-              "RelativeToolTip": "Chat2TCP-UDP\\chatserver.cs",
-              "ViewState": "AQIAAB4BAAAAAAAAAAAuwDgBAAAlAAAA",
+              "DocumentIndex": 3,
+              "Title": "MainLogin_Register.cs",
+              "DocumentMoniker": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\MainLogin_Register.cs",
+              "RelativeDocumentMoniker": "Chat2TCP-UDP\\MainLogin_Register.cs",
+              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\MainLogin_Register.cs",
+              "RelativeToolTip": "Chat2TCP-UDP\\MainLogin_Register.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T17:39:21.716Z",
+              "WhenOpened": "2024-05-17T06:51:35.043Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "chatserver.cs [Design]",
+              "Title": "MainLogin_Register.cs [Design]",
+              "DocumentMoniker": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\MainLogin_Register.cs",
+              "RelativeDocumentMoniker": "Chat2TCP-UDP\\MainLogin_Register.cs",
+              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\MainLogin_Register.cs [Design]",
+              "RelativeToolTip": "Chat2TCP-UDP\\MainLogin_Register.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T06:49:59.662Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form_signup.cs",
+              "DocumentMoniker": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\form\\Form_signup.cs",
+              "RelativeDocumentMoniker": "Chat2TCP-UDP\\form\\Form_signup.cs",
+              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\form\\Form_signup.cs",
+              "RelativeToolTip": "Chat2TCP-UDP\\form\\Form_signup.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T06:16:19.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form_signup.cs [Design]",
+              "DocumentMoniker": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\form\\Form_signup.cs",
+              "RelativeDocumentMoniker": "Chat2TCP-UDP\\form\\Form_signup.cs",
+              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\form\\Form_signup.cs [Design]",
+              "RelativeToolTip": "Chat2TCP-UDP\\form\\Form_signup.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T06:15:19.447Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Form_Login.cs [Design]",
+              "DocumentMoniker": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\form\\Form_Login.cs",
+              "RelativeDocumentMoniker": "Chat2TCP-UDP\\form\\Form_Login.cs",
+              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\form\\Form_Login.cs [Design]",
+              "RelativeToolTip": "Chat2TCP-UDP\\form\\Form_Login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-15T21:53:47.945Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "connectDB.cs",
+              "DocumentMoniker": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\connectDB.cs",
+              "RelativeDocumentMoniker": "Chat2TCP-UDP\\connectDB.cs",
+              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\connectDB.cs",
+              "RelativeToolTip": "Chat2TCP-UDP\\connectDB.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T05:40:11.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "chatserver.cs",
               "DocumentMoniker": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\chatserver.cs",
               "RelativeDocumentMoniker": "Chat2TCP-UDP\\chatserver.cs",
-              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\chatserver.cs [Design]",
-              "RelativeToolTip": "Chat2TCP-UDP\\chatserver.cs [Design]",
+              "ToolTip": "E:\\chat\\Chat2TCP-UDP\\Chat2TCP-UDP\\chatserver.cs",
+              "RelativeToolTip": "Chat2TCP-UDP\\chatserver.cs",
+              "ViewState": "AQIAACQBAAAAAAAAAAAuwEIBAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T16:20:57.937Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-05-12T17:39:21.716Z",
+              "EditorCaption": ""
             }
           ]
         }
