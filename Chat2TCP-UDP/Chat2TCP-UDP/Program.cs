@@ -17,7 +17,7 @@ namespace Chat2TCP_UDP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_Login());
+            Application.Run(new MainLogin_Register());
         }
     }
 }

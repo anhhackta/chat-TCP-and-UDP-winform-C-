@@ -1,6 +1,6 @@
 ﻿namespace Chat2TCP_UDP.form
 {
-    partial class Form_UDPchat
+    partial class Form_Join
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Form_Join
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form_UDPchat";
+            this.ClientSize = new System.Drawing.Size(864, 497);
+            this.Name = "Form_Join";
+            this.Text = "Form_Join";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

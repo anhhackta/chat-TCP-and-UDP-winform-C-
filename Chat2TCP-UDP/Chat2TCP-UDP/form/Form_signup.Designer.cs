@@ -36,10 +36,11 @@
             this.pass1 = new System.Windows.Forms.Label();
             this.email = new System.Windows.Forms.Label();
             this.nameapp = new System.Windows.Forms.Label();
-            this.btn_register = new Chat2TCP_UDP.scripts.Hoangbutton();
             this.showpass = new System.Windows.Forms.CheckBox();
-            this.hoangbutton1 = new Chat2TCP_UDP.scripts.Hoangbutton();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btn_clear = new Chat2TCP_UDP.scripts.Hoangbutton();
+            this.btn_register = new Chat2TCP_UDP.scripts.Hoangbutton();
             this.SuspendLayout();
             // 
             // tb_name_reg
@@ -73,6 +74,7 @@
             this.tb_pass1.Name = "tb_pass1";
             this.tb_pass1.Size = new System.Drawing.Size(220, 30);
             this.tb_pass1.TabIndex = 3;
+            this.tb_pass1.UseSystemPasswordChar = true;
             // 
             // username
             // 
@@ -118,6 +120,59 @@
             this.nameapp.TabIndex = 9;
             this.nameapp.Text = "Tên tronng app";
             // 
+            // showpass
+            // 
+            this.showpass.AutoSize = true;
+            this.showpass.Location = new System.Drawing.Point(157, 367);
+            this.showpass.Name = "showpass";
+            this.showpass.Size = new System.Drawing.Size(129, 24);
+            this.showpass.TabIndex = 11;
+            this.showpass.Text = "show pasword";
+            this.showpass.UseVisualStyleBackColor = true;
+            this.showpass.CheckedChanged += new System.EventHandler(this.showpass_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(100, 558);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 18);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Quay lại đăng nhập";
+            this.label1.Click += new System.EventHandler(this.btnBackToLogin_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(33, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 25);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Get Started";
+            // 
+            // btn_clear
+            // 
+            this.btn_clear.BackColor = System.Drawing.Color.White;
+            this.btn_clear.BackgroundColor = System.Drawing.Color.White;
+            this.btn_clear.BorderColor = System.Drawing.Color.Purple;
+            this.btn_clear.BorderRadius = 7;
+            this.btn_clear.BorderSize = 2;
+            this.btn_clear.FlatAppearance.BorderSize = 0;
+            this.btn_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_clear.ForeColor = System.Drawing.Color.Black;
+            this.btn_clear.Location = new System.Drawing.Point(77, 491);
+            this.btn_clear.Name = "btn_clear";
+            this.btn_clear.Size = new System.Drawing.Size(195, 46);
+            this.btn_clear.TabIndex = 12;
+            this.btn_clear.Text = "Clear";
+            this.btn_clear.TextColor = System.Drawing.Color.Black;
+            this.btn_clear.UseVisualStyleBackColor = false;
+            // 
             // btn_register
             // 
             this.btn_register.BackColor = System.Drawing.Color.MediumSlateBlue;
@@ -136,53 +191,16 @@
             this.btn_register.Text = "Register";
             this.btn_register.TextColor = System.Drawing.Color.White;
             this.btn_register.UseVisualStyleBackColor = false;
-            // 
-            // showpass
-            // 
-            this.showpass.AutoSize = true;
-            this.showpass.Location = new System.Drawing.Point(157, 367);
-            this.showpass.Name = "showpass";
-            this.showpass.Size = new System.Drawing.Size(129, 24);
-            this.showpass.TabIndex = 11;
-            this.showpass.Text = "show pasword";
-            this.showpass.UseVisualStyleBackColor = true;
-            // 
-            // hoangbutton1
-            // 
-            this.hoangbutton1.BackColor = System.Drawing.Color.White;
-            this.hoangbutton1.BackgroundColor = System.Drawing.Color.White;
-            this.hoangbutton1.BorderColor = System.Drawing.Color.Purple;
-            this.hoangbutton1.BorderRadius = 7;
-            this.hoangbutton1.BorderSize = 2;
-            this.hoangbutton1.FlatAppearance.BorderSize = 0;
-            this.hoangbutton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.hoangbutton1.ForeColor = System.Drawing.Color.Black;
-            this.hoangbutton1.Location = new System.Drawing.Point(77, 491);
-            this.hoangbutton1.Name = "hoangbutton1";
-            this.hoangbutton1.Size = new System.Drawing.Size(195, 46);
-            this.hoangbutton1.TabIndex = 12;
-            this.hoangbutton1.Text = "Clear";
-            this.hoangbutton1.TextColor = System.Drawing.Color.Black;
-            this.hoangbutton1.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(100, 558);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 16);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Quay lại đăng nhập";
+            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
             // Form_signup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(352, 614);
+            this.ClientSize = new System.Drawing.Size(352, 600);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.hoangbutton1);
+            this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.showpass);
             this.Controls.Add(this.btn_register);
             this.Controls.Add(this.nameapp);
@@ -195,11 +213,13 @@
             this.Controls.Add(this.tb_name_reg);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "Form_signup";
             this.Padding = new System.Windows.Forms.Padding(30, 92, 30, 31);
             this.Text = "Đăng Ký";
+            this.Load += new System.EventHandler(this.Form_signup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,7 +237,8 @@
         private System.Windows.Forms.Label nameapp;
         private scripts.Hoangbutton btn_register;
         private System.Windows.Forms.CheckBox showpass;
-        private scripts.Hoangbutton hoangbutton1;
+        private scripts.Hoangbutton btn_clear;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

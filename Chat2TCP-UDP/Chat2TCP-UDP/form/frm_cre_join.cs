@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace Chat2TCP_UDP.form
 {
-    public partial class Form_UDPchat : Form
+    public partial class frm_cre_join : Form
     {
-        public Form_UDPchat()
+        private Form_createroom frmCreateroom;
+        public frm_cre_join()
         {
             InitializeComponent();
+            frmCreateroom = new Form_Createroom();
+        }
+
+        private void hoangbutton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

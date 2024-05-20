@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Guna.UI2">
+      <HintPath>..\..\..\download\framwork-main\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+    </Reference>
     <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
     </Reference>
@@ -43,8 +46,10 @@
     <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,12 +67,20 @@
     <Compile Include="chatserver.Designer.cs">
       <DependentUpon>chatserver.cs</DependentUpon>
     </Compile>
+    <Compile Include="class server-client\chatclient.cs" />
+    <Compile Include="class server-client\chatserver.cs" />
     <Compile Include="connectDB.cs" />
     <Compile Include="form\Form_Createroom.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="form\Form_Createroom.Designer.cs">
       <DependentUpon>Form_Createroom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\Form_Join.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\Form_Join.Designer.cs">
+      <DependentUpon>Form_Join.cs</DependentUpon>
     </Compile>
     <Compile Include="form\Form_Login.cs">
       <SubType>Form</SubType>
@@ -81,11 +94,23 @@
     <Compile Include="form\Form_signup.Designer.cs">
       <DependentUpon>Form_signup.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\Form_UDPchat.cs">
+    <Compile Include="form\Form_chat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\Form_UDPchat.Designer.cs">
-      <DependentUpon>Form_UDPchat.cs</DependentUpon>
+    <Compile Include="form\Form_chat.Designer.cs">
+      <DependentUpon>Form_chat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\frm_cre_join.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\frm_cre_join.Designer.cs">
+      <DependentUpon>frm_cre_join.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\setting.Designer.cs">
+      <DependentUpon>setting.cs</DependentUpon>
     </Compile>
     <Compile Include="MainLogin_Register.cs">
       <SubType>Form</SubType>
@@ -104,11 +129,26 @@
     <EmbeddedResource Include="chatserver.resx">
       <DependentUpon>chatserver.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form\Form_Createroom.resx">
+      <DependentUpon>Form_Createroom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Form_Join.resx">
+      <DependentUpon>Form_Join.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\Form_Login.resx">
       <DependentUpon>Form_Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\Form_signup.resx">
       <DependentUpon>Form_signup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\Form_chat.resx">
+      <DependentUpon>Form_chat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\frm_cre_join.resx">
+      <DependentUpon>frm_cre_join.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\setting.resx">
+      <DependentUpon>setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainLogin_Register.resx">
       <DependentUpon>MainLogin_Register.cs</DependentUpon>
@@ -138,6 +178,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Settings.png" />
+    <None Include="Resources\Logout.png" />
+    <None Include="Resources\Chat.png" />
+    <None Include="Resources\Account.png" />
+    <None Include="Resources\galaxy-background.jpg" />
+    <None Include="Resources\earith.png" />
     <None Include="image\Status_Empty.png" />
     <None Include="image\Facebook.png" />
     <None Include="image\Update Left Rotation.png" />
