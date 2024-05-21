@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\Broom.png" />
     <None Include="Resources\Status_Repair.png" />
     <None Include="Resources\Customer.png" />
     <None Include="Resources\Status_Empty.png" />

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -18,9 +21,8 @@ namespace Chat2TCP_UDP
         private const int mainport = 2002;
         private Thread tcpThread;
         private Thread udpThread;
-        private bool accpectconnect = true;
 
-        private Dictionary<string, string> clientIpAddresses = new Dictionary<string, string>();
+        private List<TcpClient> connectedClients = new List<TcpClient>();
 
         public Chatserver()
         {
@@ -32,6 +34,8 @@ namespace Chat2TCP_UDP
             if (selectTCP.Checked)
             {
                 selectUDP.Checked = false;
+                stopUDPserver();
+                startTCPserver();
             }
         }
 
@@ -40,6 +44,8 @@ namespace Chat2TCP_UDP
             if (selectUDP.Checked)
             {
                 selectTCP.Checked = false;
+                stopTCPserver();
+                startUDPserver();
             }
         }
 
@@ -67,38 +73,34 @@ namespace Chat2TCP_UDP
             statusSV.SizeMode = PictureBoxSizeMode.Zoom;
 
             _listening = true;
-            Tcplisten();
+            tcpThread = new Thread(new ThreadStart(Tcplisten));
+            tcpThread.Start();
         }
 
         private void Tcplisten()
         {
             listener = new TcpListener(IPAddress.Any, mainport);
             listener.Start();
-            listener.BeginAcceptTcpClient(new AsyncCallback(AcceptTcpClientCallback), listener);
-        }
-
-        private void AcceptTcpClientCallback(IAsyncResult asyncResult)
-        {
-            TcpListener tcpListener = (TcpListener)asyncResult.AsyncState;
-
-            try
+            while (_listening)
             {
-                TcpClient client = tcpListener.EndAcceptTcpClient(asyncResult);
-                ThreadPool.QueueUserWorkItem(HandleTcpClient, client);
+                try
+                {
+                    TcpClient client = listener.AcceptTcpClient();
+                    lock (connectedClients)
+                    {
+                        connectedClients.Add(client);
+                    }
+                    ThreadPool.QueueUserWorkItem(HandleTcpClient, client);
+                }
+                catch (SocketException ex)
+                {
+                    if (_listening)
+                    {
+                        update("Lỗi khi chấp nhận kết nối TCP: " + ex.Message);
+                    }
+                }
             }
-            catch (Exception ex)
-            {
-                // Xử lý ngoại lệ
-                update("Lỗi khi chấp nhận kết nối TCP: " + ex.Message);
-            }
-
-            // Tiếp tục lắng nghe kết nối mới
-            tcpListener.BeginAcceptTcpClient(new AsyncCallback(AcceptTcpClientCallback), tcpListener);
         }
-
-
-
-
 
         private void HandleTcpClient(object obj)
         {
@@ -112,19 +114,20 @@ namespace Chat2TCP_UDP
             {
                 while (client.Connected)
                 {
-                    AddConnectedClient(clientIpAddress);
                     bytesRead = stream.Read(buffer, 0, buffer.Length);
                     if (bytesRead > 0)
                     {
                         string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                        update(" (" + clientIpAddress + "): " + message);
-                        BroadcastMessageToAllClients(message, client);
+                        string sender = clientIpAddress; // Hoặc sử dụng tên người dùng nếu có
+
+                        update($"{sender} ({clientIpAddress}): {message}");
+                        BroadcastMessageToAllClients(sender, message, client);
                     }
                 }
             }
             catch (Exception e)
             {
-                update("client đã đóng kết nối:" + clientIpAddress + ":" + e.Message);
+                update("Client đã đóng kết nối: " + clientIpAddress + " - " + e.Message);
                 RemoveDisconnectedClient(clientIpAddress);
             }
             finally
@@ -137,10 +140,11 @@ namespace Chat2TCP_UDP
         {
             string serverIpAddress = GetLocalIpAddress();
             textBox1.Text = serverIpAddress;
-            update("Server đang dùng giao thức UDP ip:port:" + serverIpAddress + ":" + mainport);
+            update("Server đang dùng giao thức UDP ip:port: " + serverIpAddress + ":" + mainport);
             statusSV.Image = Properties.Resources.Status_Empty;
             statusSV.SizeMode = PictureBoxSizeMode.Zoom;
 
+            _listening = true;
             udpThread = new Thread(new ThreadStart(UdpListener));
             udpThread.Start();
         }
@@ -148,7 +152,7 @@ namespace Chat2TCP_UDP
         private void UdpListener()
         {
             udpClient = new UdpClient(mainport);
-            IPEndPoint remoteEP = null;
+            IPEndPoint remoteEP = new IPEndPoint(IPAddress.Any, 0);
 
             try
             {
@@ -156,48 +160,93 @@ namespace Chat2TCP_UDP
                 {
                     byte[] data = udpClient.Receive(ref remoteEP);
                     string message = Encoding.UTF8.GetString(data);
-                    update("Kết nối từ UDP: " + message);
-                    //BroadcastMessage(message);
+                    string timestampedMessage = "[" + DateTime.Now.ToString("HH:mm:ss") + "] Kết nối từ UDP: " + message;
+                    update(timestampedMessage);
+                    // BroadcastMessage(message);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                if (_listening)
+                {
+                    update("Lỗi khi nhận dữ liệu UDP: " + ex.Message);
+                }
             }
             finally
             {
                 udpClient.Close();
             }
         }
-
-        private void BroadcastMessageToAllClients(string message, TcpClient senderClient)
+        private byte[] Serialize(object obj)
         {
-            foreach (var kvp in clientIpAddresses)
-            {
-                string clientName = kvp.Key;
-                string clientIpAddress = kvp.Value;
+            MemoryStream stream = new MemoryStream();
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, obj);
+            return stream.ToArray();
+        }
 
-                // Kiểm tra xem client có phải là senderClient không
-                if (clientIpAddress != ((IPEndPoint)senderClient.Client.RemoteEndPoint).Address.ToString())
+        private T Deserialize<T>(byte[] data)
+        {
+            try
+            {
+                using (MemoryStream stream = new MemoryStream(data))
                 {
-                    try
-                    {
-                        TcpClient client = new TcpClient(clientIpAddress, mainport);
-                        NetworkStream stream = client.GetStream();
-                        byte[] buffer = Encoding.UTF8.GetBytes(message);
-                        stream.Write(buffer, 0, buffer.Length);
-                        stream.Flush();
-                        client.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        // Xử lý lỗi khi gửi tin nhắn đến client
-                        update("Lỗi gửi tin nhắn đến client: " + ex.Message);
-                    }
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    return (T)formatter.Deserialize(stream);
                 }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi nếu có
+                Console.WriteLine("Lỗi khi deserialize: " + ex.Message);
+                return default(T);
             }
         }
 
+        private void BroadcastMessageToAllClients(string sender, string content, TcpClient senderClient)
+        {
+            Message message = new Message
+            {
+                Sender = sender,
+                Content = content,
+                Timestamp = DateTime.Now
+            };
+
+            byte[] data = Serialize(message);
+
+            lock (connectedClients)
+            {
+                foreach (var client in connectedClients)
+                {
+                    if (client != senderClient)
+                    {
+                        try
+                        {
+                            NetworkStream stream = client.GetStream();
+                            stream.Write(data, 0, data.Length);
+                            stream.Flush();
+                        }
+                        catch (Exception ex)
+                        {
+                            update("Lỗi gửi tin nhắn đến client: " + ex.Message);
+                        }
+                    }
+                }
+            }
+
+            // Gửi tin nhắn đến tất cả các UDP client (nếu có)
+            if (udpClient != null)
+            {
+                try
+                {
+                    udpClient.Send(data, data.Length);
+                }
+                catch (Exception ex)
+                {
+                    update("Lỗi gửi tin nhắn UDP: " + ex.Message);
+                }
+            }
+        }
         private void modebg_CheckedChanged_1(object sender, EventArgs e)
         {
             if (modebg.Checked)
@@ -208,7 +257,6 @@ namespace Chat2TCP_UDP
                 }
                 else if (selectUDP.Checked)
                 {
-                    stopTCPserver();
                     startUDPserver();
                 }
             }
@@ -219,19 +267,30 @@ namespace Chat2TCP_UDP
                 statusSV.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
+
         private void stopTCPserver()
         {
-            accpectconnect = false;
+            _listening = false;
+            listener?.Stop();
+            tcpThread?.Join();
 
-            if (listener != null && listener.Server.IsBound)
+            lock (connectedClients)
             {
-                listener.Stop();
+                foreach (var client in connectedClients)
+                {
+                    client.Close();
+                }
+                connectedClients.Clear();
             }
         }
+
         private void stopUDPserver()
         {
+            _listening = false;
             udpClient?.Close();
+            udpThread?.Join();
         }
+
         private void stopsv()
         {
             stopTCPserver();
@@ -239,7 +298,7 @@ namespace Chat2TCP_UDP
         }
 
         private void update(string message)
-        {   
+        {
             if (listmessage.InvokeRequired)
             {
                 listmessage.Invoke((MethodInvoker)delegate { update(message); });
@@ -249,6 +308,7 @@ namespace Chat2TCP_UDP
                 listmessage.Items.Add(message);
             }
         }
+
         private void Form_FormClosing(object sender, FormClosingEventArgs e)
         {
             stopsv();
@@ -259,27 +319,25 @@ namespace Chat2TCP_UDP
             System.Diagnostics.Process.Start("https://www.facebook.com/anhhackta.official");
         }
 
+        private void AddConnectedClient(string clientIdentifier)
+        {
+            if (!connectedClients.Exists(c => ((IPEndPoint)c.Client.RemoteEndPoint).Address.ToString() + ":" + ((IPEndPoint)c.Client.RemoteEndPoint).Port.ToString() == clientIdentifier))
+            {
+                UpdateConnectedIpAddresses();
+            }
+        }
 
-        private void AddConnectedClient(string clientName)
+        private void RemoveDisconnectedClient(string clientIdentifier)
         {
-            if (!clientIpAddresses.ContainsKey(clientName))
-            {
-                string clientIpAddress = ((IPEndPoint)listener.LocalEndpoint).Address.ToString();
-                clientIpAddresses.Add(clientName, clientIpAddress);
-                UpdateConnectedIpAddresses();
-            }
+            UpdateConnectedIpAddresses();
         }
-        private void RemoveDisconnectedClient(string clientName)
-        {
-            if (clientIpAddresses.ContainsKey(clientName))
-            {
-                clientIpAddresses.Remove(clientName);
-                UpdateConnectedIpAddresses();
-            }
-        }
+
         private void btnReset_Click(object sender, EventArgs e)
         {
-            clientIpAddresses.Clear();
+            lock (connectedClients)
+            {
+                connectedClients.Clear();
+            }
             UpdateConnectedIpAddresses();
         }
 
@@ -292,12 +350,104 @@ namespace Chat2TCP_UDP
             else
             {
                 listipconnect.Items.Clear();
-                foreach (var vkp in clientIpAddresses)
+                lock (connectedClients)
                 {
-                    listipconnect.Items.Add(vkp.Key + " - " + vkp.Value);
+                    foreach (var client in connectedClients)
+                    {
+                        string clientIdentifier = ((IPEndPoint)client.Client.RemoteEndPoint).Address.ToString() + ":" + ((IPEndPoint)client.Client.RemoteEndPoint).Port.ToString();
+                        listipconnect.Items.Add(clientIdentifier);
+                    }
                 }
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox_mahoa.Text == String.Empty)
+            {
+                MessageBox.Show("Chưa nhập dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string msg = textBox_mahoa.Text;
+            string strEnry = (Encrypt(msg));
+
+            textBox_giaima.Clear();
+            textBox_giaima.Text = strEnry;
+
+        }
+        private void btn_giaima_Click(object sender, EventArgs e)
+        {
+            if (textBox_giaima.Text == String.Empty)
+            {
+                MessageBox.Show("Chưa nhập dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string msg1 = textBox_giaima.Text;
+            string strDecry = (Decrypt(msg1));
+
+            textBox_mahoa.Clear();
+            textBox_mahoa.Text = strDecry;
+        }
+        public static class GlobalKey
+        {
+            public const String STRING_PERMUTATION = "baitapchatvamahoa";
+            public const Int32 BYTE_PERMUTATION_1 = 0x19;
+            public const Int32 BYTE_PERMUTATION_2 = 0x59;
+            public const Int32 BYTE_PERMUTATION_3 = 0x17;
+            public const Int32 BYTE_PERMUTATION_4 = 0x41;
+        }
+        // encoding
+        public static string Encrypt(string strData)
+        {
+            return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(strData)));
+        }
+        // decoding
+        public static string Decrypt(string strData)
+        {
+            return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(strData)));
+        }
+
+        public static byte[] Encrypt(byte[] strData)
+        {
+            PasswordDeriveBytes passbytes =
+           new PasswordDeriveBytes(GlobalKey.STRING_PERMUTATION,
+           new byte[] { GlobalKey.BYTE_PERMUTATION_1,
+            GlobalKey.BYTE_PERMUTATION_2,
+            GlobalKey.BYTE_PERMUTATION_3,
+            GlobalKey.BYTE_PERMUTATION_4 });
+            MemoryStream memstream = new MemoryStream();
+            Aes aes = new AesManaged();
+            aes.Key = passbytes.GetBytes(aes.KeySize / 8);
+            aes.IV = passbytes.GetBytes(aes.BlockSize / 8);
+            CryptoStream cryptostream = new CryptoStream(memstream,
+            aes.CreateEncryptor(), CryptoStreamMode.Write);
+            cryptostream.Write(strData, 0, strData.Length);
+            cryptostream.Close();
+            return memstream.ToArray();
+        }
+        public static byte[] Decrypt(byte[] strData)
+        {
+            PasswordDeriveBytes passbytes =
+           new PasswordDeriveBytes(GlobalKey.STRING_PERMUTATION,
+           new byte[] { GlobalKey.BYTE_PERMUTATION_1,
+            GlobalKey.BYTE_PERMUTATION_2,
+            GlobalKey.BYTE_PERMUTATION_3,
+            GlobalKey.BYTE_PERMUTATION_4});
+            MemoryStream memstream = new MemoryStream();
+            Aes aes = new AesManaged();
+            aes.Key = passbytes.GetBytes(aes.KeySize / 8);
+            aes.IV = passbytes.GetBytes(aes.BlockSize / 8);
+            CryptoStream cryptostream = new CryptoStream(memstream,
+            aes.CreateDecryptor(), CryptoStreamMode.Write);
+            cryptostream.Write(strData, 0, strData.Length);
+            cryptostream.Close();
+            return memstream.ToArray();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textBox_mahoa.Clear();
+            textBox_giaima.Clear();
+        }
     }
 }

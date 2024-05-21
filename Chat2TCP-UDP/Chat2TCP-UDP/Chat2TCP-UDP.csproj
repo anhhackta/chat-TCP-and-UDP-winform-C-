@@ -62,6 +62,7 @@
     <Compile Include="chatserver.Designer.cs">
       <DependentUpon>chatserver.cs</DependentUpon>
     </Compile>
+    <Compile Include="Message.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="chatserver.resx">
@@ -97,6 +98,7 @@
     <None Include="image\Update Left Rotation.png" />
     <None Include="image\Info.png" />
     <None Include="image\Status_Repair.png" />
+    <None Include="image\Broom.png" />
     <Content Include="MetroFramework.txt" />
   </ItemGroup>
   <ItemGroup />

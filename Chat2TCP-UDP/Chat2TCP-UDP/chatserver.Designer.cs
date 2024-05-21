@@ -39,12 +39,19 @@
             this.pn_ip = new MetroFramework.Controls.MetroPanel();
             this.listipconnect = new System.Windows.Forms.ListBox();
             this.ListIP = new MetroFramework.Controls.MetroLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox_mahoa = new System.Windows.Forms.TextBox();
+            this.textBox_giaima = new System.Windows.Forms.TextBox();
+            this.btn_mahoa = new System.Windows.Forms.Button();
+            this.btn_giaima = new System.Windows.Forms.Button();
             this.btnResetIp = new System.Windows.Forms.Button();
             this.logofb = new System.Windows.Forms.Button();
             this.statusSV = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnbuttonip.SuspendLayout();
             this.pnmess.SuspendLayout();
             this.pn_ip.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.statusSV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +59,7 @@
             // 
             this.modebg.AutoSize = true;
             this.modebg.Location = new System.Drawing.Point(194, 17);
-            this.modebg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.modebg.Margin = new System.Windows.Forms.Padding(2);
             this.modebg.Name = "modebg";
             this.modebg.Size = new System.Drawing.Size(80, 17);
             this.modebg.TabIndex = 0;
@@ -74,7 +81,7 @@
             this.pnbuttonip.HorizontalScrollbarHighlightOnWheel = false;
             this.pnbuttonip.HorizontalScrollbarSize = 8;
             this.pnbuttonip.Location = new System.Drawing.Point(15, 60);
-            this.pnbuttonip.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnbuttonip.Margin = new System.Windows.Forms.Padding(2);
             this.pnbuttonip.Name = "pnbuttonip";
             this.pnbuttonip.Size = new System.Drawing.Size(676, 49);
             this.pnbuttonip.TabIndex = 1;
@@ -85,7 +92,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(11, 14);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(156, 21);
@@ -95,7 +102,7 @@
             // 
             this.selectUDP.AutoSize = true;
             this.selectUDP.Location = new System.Drawing.Point(380, 16);
-            this.selectUDP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectUDP.Margin = new System.Windows.Forms.Padding(2);
             this.selectUDP.Name = "selectUDP";
             this.selectUDP.Size = new System.Drawing.Size(48, 17);
             this.selectUDP.TabIndex = 6;
@@ -107,7 +114,7 @@
             this.selectTCP.AutoSize = true;
             this.selectTCP.Checked = true;
             this.selectTCP.Location = new System.Drawing.Point(321, 16);
-            this.selectTCP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.selectTCP.Margin = new System.Windows.Forms.Padding(2);
             this.selectTCP.Name = "selectTCP";
             this.selectTCP.Size = new System.Drawing.Size(46, 17);
             this.selectTCP.TabIndex = 5;
@@ -125,9 +132,9 @@
             this.pnmess.HorizontalScrollbarHighlightOnWheel = false;
             this.pnmess.HorizontalScrollbarSize = 8;
             this.pnmess.Location = new System.Drawing.Point(15, 109);
-            this.pnmess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnmess.Margin = new System.Windows.Forms.Padding(2);
             this.pnmess.Name = "pnmess";
-            this.pnmess.Size = new System.Drawing.Size(441, 337);
+            this.pnmess.Size = new System.Drawing.Size(441, 408);
             this.pnmess.TabIndex = 2;
             this.pnmess.VerticalScrollbarBarColor = true;
             this.pnmess.VerticalScrollbarHighlightOnWheel = false;
@@ -149,10 +156,10 @@
             // 
             this.listmessage.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listmessage.HideSelection = false;
-            this.listmessage.Location = new System.Drawing.Point(0, 21);
-            this.listmessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listmessage.Location = new System.Drawing.Point(0, 44);
+            this.listmessage.Margin = new System.Windows.Forms.Padding(2);
             this.listmessage.Name = "listmessage";
-            this.listmessage.Size = new System.Drawing.Size(441, 316);
+            this.listmessage.Size = new System.Drawing.Size(441, 364);
             this.listmessage.TabIndex = 4;
             this.listmessage.UseCompatibleStateImageBehavior = false;
             this.listmessage.View = System.Windows.Forms.View.List;
@@ -168,9 +175,9 @@
             this.pn_ip.HorizontalScrollbarHighlightOnWheel = false;
             this.pn_ip.HorizontalScrollbarSize = 8;
             this.pn_ip.Location = new System.Drawing.Point(461, 109);
-            this.pn_ip.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pn_ip.Margin = new System.Windows.Forms.Padding(2);
             this.pn_ip.Name = "pn_ip";
-            this.pn_ip.Size = new System.Drawing.Size(230, 337);
+            this.pn_ip.Size = new System.Drawing.Size(230, 408);
             this.pn_ip.TabIndex = 3;
             this.pn_ip.VerticalScrollbarBarColor = true;
             this.pn_ip.VerticalScrollbarHighlightOnWheel = false;
@@ -178,12 +185,12 @@
             // 
             // listipconnect
             // 
-            this.listipconnect.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.listipconnect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listipconnect.FormattingEnabled = true;
-            this.listipconnect.Location = new System.Drawing.Point(0, 47);
-            this.listipconnect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listipconnect.Location = new System.Drawing.Point(0, 0);
+            this.listipconnect.Margin = new System.Windows.Forms.Padding(2);
             this.listipconnect.Name = "listipconnect";
-            this.listipconnect.Size = new System.Drawing.Size(230, 290);
+            this.listipconnect.Size = new System.Drawing.Size(230, 408);
             this.listipconnect.TabIndex = 4;
             // 
             // ListIP
@@ -197,6 +204,55 @@
             this.ListIP.Size = new System.Drawing.Size(124, 25);
             this.ListIP.TabIndex = 3;
             this.ListIP.Text = "Danh Sách IP";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btn_giaima);
+            this.panel1.Controls.Add(this.btn_mahoa);
+            this.panel1.Controls.Add(this.textBox_giaima);
+            this.panel1.Controls.Add(this.textBox_mahoa);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(15, 517);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(676, 100);
+            this.panel1.TabIndex = 4;
+            // 
+            // textBox_mahoa
+            // 
+            this.textBox_mahoa.Location = new System.Drawing.Point(11, 5);
+            this.textBox_mahoa.Multiline = true;
+            this.textBox_mahoa.Name = "textBox_mahoa";
+            this.textBox_mahoa.Size = new System.Drawing.Size(430, 32);
+            this.textBox_mahoa.TabIndex = 0;
+            // 
+            // textBox_giaima
+            // 
+            this.textBox_giaima.Location = new System.Drawing.Point(11, 52);
+            this.textBox_giaima.Multiline = true;
+            this.textBox_giaima.Name = "textBox_giaima";
+            this.textBox_giaima.Size = new System.Drawing.Size(430, 32);
+            this.textBox_giaima.TabIndex = 1;
+            // 
+            // btn_mahoa
+            // 
+            this.btn_mahoa.Location = new System.Drawing.Point(471, 5);
+            this.btn_mahoa.Name = "btn_mahoa";
+            this.btn_mahoa.Size = new System.Drawing.Size(75, 32);
+            this.btn_mahoa.TabIndex = 2;
+            this.btn_mahoa.Text = "mã hóa";
+            this.btn_mahoa.UseVisualStyleBackColor = true;
+            this.btn_mahoa.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btn_giaima
+            // 
+            this.btn_giaima.Location = new System.Drawing.Point(471, 52);
+            this.btn_giaima.Name = "btn_giaima";
+            this.btn_giaima.Size = new System.Drawing.Size(75, 32);
+            this.btn_giaima.TabIndex = 3;
+            this.btn_giaima.Text = "giải mã";
+            this.btn_giaima.UseVisualStyleBackColor = true;
+            this.btn_giaima.Click += new System.EventHandler(this.btn_giaima_Click);
             // 
             // btnResetIp
             // 
@@ -238,16 +294,31 @@
             this.statusSV.TabIndex = 2;
             this.statusSV.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = global::Chat2TCP_UDP.Properties.Resources.Broom;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(569, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 79);
+            this.button1.TabIndex = 4;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Chatserver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(706, 462);
+            this.ClientSize = new System.Drawing.Size(706, 633);
             this.Controls.Add(this.pn_ip);
             this.Controls.Add(this.pnmess);
             this.Controls.Add(this.pnbuttonip);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Chatserver";
             this.Padding = new System.Windows.Forms.Padding(15, 60, 15, 16);
@@ -263,6 +334,8 @@
             this.pnmess.PerformLayout();
             this.pn_ip.ResumeLayout(false);
             this.pn_ip.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.statusSV)).EndInit();
             this.ResumeLayout(false);
 
@@ -284,6 +357,12 @@
         private System.Windows.Forms.TextBox textBox1;
         private MetroFramework.Controls.MetroLabel messchat;
         private System.Windows.Forms.Button btnResetIp;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_giaima;
+        private System.Windows.Forms.Button btn_mahoa;
+        private System.Windows.Forms.TextBox textBox_giaima;
+        private System.Windows.Forms.TextBox textBox_mahoa;
+        private System.Windows.Forms.Button button1;
     }
 }
 

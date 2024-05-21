@@ -1,8 +1,13 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+
 
 namespace Chatclient
 {
@@ -16,6 +21,8 @@ namespace Chatclient
         private int serverPort;
         private bool isTcpConnected = false;
 
+        
+
         public login()
         {
             InitializeComponent();
@@ -25,9 +32,9 @@ namespace Chatclient
         {
             try
             {
-                
                 tcpClient = new TcpClient(serverIp, serverPort);
                 tcpStream = tcpClient.GetStream();
+                SendMessage(clientName);
                 receiveThread = new Thread(ReceiveMessages);
                 receiveThread.Start();
                 UpdateMessage("Kết nối bằng giao thức TCP.");
@@ -39,7 +46,6 @@ namespace Chatclient
             {
                 try
                 {
-                    
                     udpClient = new UdpClient();
                     udpClient.Connect(serverIp, serverPort);
                     UpdateMessage("Kết nối bằng giao thức UDP.");
@@ -54,6 +60,32 @@ namespace Chatclient
             }
         }
 
+        private byte[] Serialize(object obj)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, obj);
+                return stream.ToArray();
+            }
+        }
+
+        private T Deserialize<T>(byte[] data)
+        {
+            try
+            {
+                using (MemoryStream stream = new MemoryStream(data))
+                {
+                    BinaryFormatter formatter = new BinaryFormatter();
+                    return (T)formatter.Deserialize(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi deserialize: " + ex.Message);
+                return default(T);
+            }
+        }
         private void ReceiveMessages()
         {
             try
@@ -86,7 +118,14 @@ namespace Chatclient
                 }
                 else
                 {
-                    udpClient.Send(data, data.Length);
+                    if (udpClient != null) // 
+                    {
+                        udpClient.Send(data, data.Length);
+                    }
+                    else
+                    {
+                        UpdateMessage("UDP client chưa được khởi tạo.");
+                    }
                 }
             }
             catch (Exception ex)
@@ -164,6 +203,9 @@ namespace Chatclient
                     tcpClient.Close();
                     statussv.Image = Properties.Resources.Status_Repair;
                     statussv.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    // Gửi thông báo cho server biết client đã đóng kết nối
+                    SendMessage("Client đã đóng kết nối");
                 }
                 if (udpClient != null)
                 {
@@ -175,9 +217,10 @@ namespace Chatclient
             }
             catch (Exception ex)
             {
-                UpdateMessage("lỗi trong lúc disconnect " + ex.Message);
+                UpdateMessage("Lỗi trong lúc disconnect " + ex.Message);
             }
         }
+
 
         private void entersend_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -190,6 +233,95 @@ namespace Chatclient
         private void login_FormClosing(object sender, FormClosingEventArgs e)
         {
             Disconnect();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (tb_mahoa.Text == String.Empty)
+            {
+                MessageBox.Show("Chưa nhập dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string msg = tb_mahoa.Text;
+            string strEnry = (Encrypt(msg));
+
+            tb_giaima.Clear();
+            tb_giaima.Text = strEnry;
+
+        }
+        private void btn_giaima_Click(object sender, EventArgs e)
+        {
+            if (tb_giaima.Text == String.Empty)
+            {
+                MessageBox.Show("Chưa nhập dữ liệu", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string msg1 = tb_giaima.Text;
+            string strDecry = (Decrypt(msg1));
+
+            tb_mahoa.Clear();
+            tb_mahoa.Text = strDecry;
+        }
+        public static class GlobalKey
+        {
+            public const String STRING_PERMUTATION = "baitapchatvamahoa";
+            public const Int32 BYTE_PERMUTATION_1 = 0x19;
+            public const Int32 BYTE_PERMUTATION_2 = 0x59;
+            public const Int32 BYTE_PERMUTATION_3 = 0x17;
+            public const Int32 BYTE_PERMUTATION_4 = 0x41;
+        }
+        // encoding
+        public static string Encrypt(string strData)
+        {
+            return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(strData)));
+        }
+        // decoding
+        public static string Decrypt(string strData)
+        {
+            return Encoding.UTF8.GetString(Decrypt(Convert.FromBase64String(strData)));
+        }
+
+        public static byte[] Encrypt(byte[] strData)
+        {
+            PasswordDeriveBytes passbytes =
+           new PasswordDeriveBytes(GlobalKey.STRING_PERMUTATION,
+           new byte[] { GlobalKey.BYTE_PERMUTATION_1,
+            GlobalKey.BYTE_PERMUTATION_2,
+            GlobalKey.BYTE_PERMUTATION_3,
+            GlobalKey.BYTE_PERMUTATION_4 });
+            MemoryStream memstream = new MemoryStream();
+            Aes aes = new AesManaged();
+            aes.Key = passbytes.GetBytes(aes.KeySize / 8);
+            aes.IV = passbytes.GetBytes(aes.BlockSize / 8);
+            CryptoStream cryptostream = new CryptoStream(memstream,
+            aes.CreateEncryptor(), CryptoStreamMode.Write);
+            cryptostream.Write(strData, 0, strData.Length);
+            cryptostream.Close();
+            return memstream.ToArray();
+        }
+        public static byte[] Decrypt(byte[] strData)
+        {
+            PasswordDeriveBytes passbytes =
+           new PasswordDeriveBytes(GlobalKey.STRING_PERMUTATION,
+           new byte[] { GlobalKey.BYTE_PERMUTATION_1,
+            GlobalKey.BYTE_PERMUTATION_2,
+            GlobalKey.BYTE_PERMUTATION_3,
+            GlobalKey.BYTE_PERMUTATION_4});
+            MemoryStream memstream = new MemoryStream();
+            Aes aes = new AesManaged();
+            aes.Key = passbytes.GetBytes(aes.KeySize / 8);
+            aes.IV = passbytes.GetBytes(aes.BlockSize / 8);
+            CryptoStream cryptostream = new CryptoStream(memstream,
+            aes.CreateDecryptor(), CryptoStreamMode.Write);
+            cryptostream.Write(strData, 0, strData.Length);
+            cryptostream.Close();
+            return memstream.ToArray();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tb_mahoa.Clear();
+            tb_giaima.Clear();
         }
     }
 }

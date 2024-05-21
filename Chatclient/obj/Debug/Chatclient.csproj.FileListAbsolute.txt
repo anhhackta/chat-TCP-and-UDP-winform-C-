@@ -11,3 +11,16 @@ E:\chat\Chatclient\obj\Debug\Chatclient.csproj.CoreCompileInputs.cache
 E:\chat\Chatclient\obj\Debug\Chatclient.csproj.Up2Date
 E:\chat\Chatclient\obj\Debug\Chatclient.exe
 E:\chat\Chatclient\obj\Debug\Chatclient.pdb
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\bin\Debug\Chatclient.exe.config
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\bin\Debug\Chatclient.exe
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\bin\Debug\Chatclient.pdb
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\bin\Debug\MetroFramework.dll
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\obj\Debug\Chatclient.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\obj\Debug\Chatclient.login.resources
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\obj\Debug\Chatclient.Properties.Resources.resources
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\obj\Debug\Chatclient.csproj.GenerateResource.cache
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\obj\Debug\Chatclient.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\obj\Debug\Chatclient.csproj.Up2Date
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\obj\Debug\Chatclient.exe
+C:\Users\ADMIN\Desktop\chat-TCP-and-UDP-winform-C-\Chatclient\obj\Debug\Chatclient.pdb
